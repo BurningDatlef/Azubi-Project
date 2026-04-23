@@ -4,7 +4,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.OneToMany;
-import org.springframework.data.annotation.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Getter
+@Setter
 public class Sendung {
 
 	@Id
@@ -25,50 +28,4 @@ public class Sendung {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Verordnung> verordnungen;
-
-	// Getter & Setter
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getSendungsnummer() {
-		return sendungsnummer;
-	}
-
-	public void setSendungsnummer(String sendungsnummer) {
-		this.sendungsnummer = sendungsnummer;
-	}
-
-	public Integer getKundennummer() {
-		return kundennummer;
-	}
-
-	public void setKundennummer(Integer kundennummer) {
-		this.kundennummer = kundennummer;
-	}
-
-	public BigDecimal getAbrechnungssumme() {
-		return abrechnungssumme;
-	}
-
-	public void setAbrechnungssumme(BigDecimal abrechnungssumme) {
-		this.abrechnungssumme = abrechnungssumme;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public List<Verordnung> getVerordnungen() {
-		return verordnungen;
-	}
-
-	public void setVerordnungen(List<Verordnung> verordnungen) {
-		this.verordnungen = verordnungen;
-	}
 }

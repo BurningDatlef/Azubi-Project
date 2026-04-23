@@ -2,13 +2,16 @@ package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import org.springframework.data.annotation.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 import jakarta.persistence.*;
 
 @Entity
+@Getter
+@Setter
 public class Position {
 
 	@Id
@@ -24,41 +27,4 @@ public class Position {
 	private BigDecimal einzelpreis;
 	private Integer menge;
 
-	// Getter & Setter
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getPositionsnummer() {
-		return positionsnummer;
-	}
-
-	public void setPositionsnummer(String positionsnummer) {
-		this.positionsnummer = positionsnummer;
-	}
-
-	public String getPositionstext() {
-		return positionstext;
-	}
-
-	public void setPositionstext(String positionstext) {
-		this.positionstext = positionstext;
-	}
-
-	public BigDecimal getEinzelpreis() {
-		return einzelpreis;
-	}
-
-	public void setEinzelpreis(BigDecimal einzelpreis) {
-		this.einzelpreis = einzelpreis;
-	}
-
-	public Integer getMenge() {
-		return menge;
-	}
-
-	public void setMenge(Integer menge) {
-		this.menge = menge;
-	}
 }
