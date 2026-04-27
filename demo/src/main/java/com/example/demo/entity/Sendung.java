@@ -12,6 +12,8 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
+//TODO DTO Klassen angucken etc.
+//TODO Endpunkte haben verschiedende rückgaben
 @Entity
 @Getter
 @Setter

@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.SendungRepository;
+import com.example.demo.repo.SendungRepository;
 import com.example.demo.entity.Sendung;
 import com.example.demo.entity.Verordnung;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class SendungService {
 	}
 
 	public String einreichen(Sendung sendung) {
-
+		//anotationen selber schreiben und an sich die ganzen anotation die häufig genutzt werden.
 		validate(sendung);
 
 		sendung.setSendungsnummer(UUID.randomUUID().toString());
