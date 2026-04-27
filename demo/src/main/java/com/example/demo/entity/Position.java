@@ -19,16 +19,16 @@ public class Position {
 	private Long id;
 
 	@Column(length = 10)
-	private String positionsnummer;
+	private String itemNumber;
 
 	@Column(length = 256)
-	private String positionstext;
+	private String itemText;
 
 	@ManyToOne
-	@JoinColumn(name = "verordnung_id")
-	private Verordnung verordnung;
+	@JoinColumn(name = "prescription_id")
+	private Prescription prescription;
 
-	private BigDecimal einzelpreis;
-	private Integer menge;
+	private BigDecimal singlePrice;
+	private Integer amount;
 
 }

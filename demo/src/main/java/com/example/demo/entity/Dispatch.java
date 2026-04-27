@@ -17,17 +17,17 @@ import jakarta.persistence.*;
 @Entity
 @Getter
 @Setter
-public class Sendung {
+public class Dispatch {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String sendungsnummer;
-	private Integer kundennummer;
-	private BigDecimal abrechnungssumme;
+	private String dispatchId;
+	private Integer customerNumber;
+	private BigDecimal accountSum;
 	private String status;
 
-	@OneToMany(mappedBy = "sendung", cascade = CascadeType.ALL)
-	private List<Verordnung> verordnungen;
+	@OneToMany(mappedBy = "dispatch", cascade = CascadeType.ALL)
+	private List<Prescription> prescription;
 }

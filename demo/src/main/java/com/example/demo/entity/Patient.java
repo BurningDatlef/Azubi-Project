@@ -20,28 +20,28 @@ public class Patient {
 	private Long id;
 
 	@Column(length = 256)
-	private String nachname;
+	private String lastname;
 
 	@Column(length = 256)
-	private String vorname;
+	private String firstname;
 
-	private LocalDate geburtsdatum;
+	private LocalDate birthday;
 
 	@Column(length = 12)
-	private String versichertennummer;
+	private String insurantNumber;
 
 	@Column(length = 5)
-	private String versichertenstatus;
+	private String insurantState;
 
 	@Column(length = 256)
-	private String strasse;
+	private String street;
 
 	@Column(length = 10)
-	private String postleitzahl;
+	private String postcode;
 
 	@Column(length = 256)
-	private String ort;
+	private String place;
 
 	@Column(length = 3)
-	private String laenderkennzeichen;
+	private String countrycode;
 }

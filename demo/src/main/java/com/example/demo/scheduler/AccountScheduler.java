@@ -1,15 +1,14 @@
 package com.example.demo.scheduler;
 
-import com.example.demo.repo.SendungRepository;
-import org.springframework.scheduling.annotation.Scheduled;
+import com.example.demo.repo.DispatchRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AbrechnungScheduler {
+public class AccountScheduler {
 
-	private final SendungRepository repo;
+	private final DispatchRepository repo;
 
-	public AbrechnungScheduler(SendungRepository repo) {
+	public AccountScheduler(DispatchRepository repo) {
 		this.repo = repo;
 	}
 

@@ -9,35 +9,35 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Verordnung {
+public class Prescription {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(length = 256)
-	private String belegnummer;
+	private String documentId;
 
-	private LocalDate ausstellungsdatum;
+	private LocalDate issueDate;
 
 	@Column(length = 256)
-	private String kostentraegerName;
+	private String costUnitName;
 
-	private Integer kostentraegerIK;
-
-	@Column(length = 9)
-	private String betriebsstaettennummer;
+	private Integer costUnitIKNumber;
 
 	@Column(length = 9)
-	private String vertragsarztnummer;
+	private String establishmentId;
+
+	@Column(length = 9)
+	private String contractMedicalPractitionerID;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Patient patient;
 
-	@OneToMany(mappedBy = "verordnung", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
 	private List<Position> positionen;
 
 	@ManyToOne
-	@JoinColumn(name = "sendung_id")
-	private Sendung sendung;
+	@JoinColumn(name = "dispatch_id")
+	private Dispatch dispatch;
 }
