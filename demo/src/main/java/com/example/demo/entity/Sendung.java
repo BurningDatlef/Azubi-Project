@@ -26,6 +26,6 @@ public class Sendung {
 	private BigDecimal abrechnungssumme;
 	private String status;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "sendung", cascade = CascadeType.ALL)
 	private List<Verordnung> verordnungen;
 }

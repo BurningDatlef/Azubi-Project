@@ -24,6 +24,10 @@ public class Position {
 	@Column(length = 256)
 	private String positionstext;
 
+	@ManyToOne
+	@JoinColumn(name = "verordnung_id")
+	private Verordnung verordnung;
+
 	private BigDecimal einzelpreis;
 	private Integer menge;
 

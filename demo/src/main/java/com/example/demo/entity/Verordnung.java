@@ -34,6 +34,10 @@ public class Verordnung {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Patient patient;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "verordnung", cascade = CascadeType.ALL)
 	private List<Position> positionen;
+
+	@ManyToOne
+	@JoinColumn(name = "sendung_id")
+	private Sendung sendung;
 }
