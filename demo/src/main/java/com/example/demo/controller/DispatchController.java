@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Dispatch;
+import com.example.demo.dto.DispatchCreatedResponseDto;
+import com.example.demo.dto.DispatchRequestDto;
+import com.example.demo.dto.DispatchStatusResponseDto;
 import com.example.demo.service.DispatchService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,13 +17,14 @@ public class DispatchController {
 	}
 
 	@PostMapping
-	public String tender(@RequestBody Dispatch dispatch) {
-		return service.tender(dispatch);
+	public DispatchCreatedResponseDto tender(@RequestBody DispatchRequestDto request) {
+		String dispatchId = service.tender(request);
+		return new DispatchCreatedResponseDto(dispatchId);
 	}
 
 	@GetMapping("/{number}")
-	public Dispatch status(@PathVariable String number) {
-		return service.status(number);
+	public DispatchStatusResponseDto status(@PathVariable String number) {
+		return service.statusDto(number);
 	}
 
 	@DeleteMapping("/{number}")
