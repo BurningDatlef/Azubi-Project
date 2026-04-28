@@ -6,9 +6,9 @@ import com.example.demo.entity.Prescription;
 import org.springframework.stereotype.Service;
 import com.example.demo.dto.*;
 import com.example.demo.entity.*;
-import java.time.LocalDateTime;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,8 +22,36 @@ public class DispatchService {
 		this.repository = repository;
 	}
 
+	private void validateBusinessRules(DispatchRequestDto request) {
+		List<String> errors = new ArrayList<>();
+
+		for (PrescriptionRequestDto prescription : request.prescriptions()) {
+
+			if (prescription.issueDate().isBefore(prescription.patient().birthday())) {
+				errors.add("Ausstellungsdatum liegt vor Geburtsdatum");
+			}
+
+			if (prescription.issueDate().isAfter(LocalDate.now())) {
+				errors.add("Ausstellungsdatum darf nicht nach dem Einreichungsdatum liegen");
+			}
+
+			boolean duplicate = repository.existsByCustomerNumberAndDocumentId(
+					request.customerNumber(),
+					prescription.documentId()
+			);
+
+			if (duplicate) {
+				errors.add("Belegnummer wurde für diesen Kunden bereits eingereicht: " + prescription.documentId());
+			}
+		}
+
+		if (!errors.isEmpty()) {
+			throw new RuntimeException(errors.toString());
+		}
+	}
+
 	public String tender(DispatchRequestDto request) {
-		validate(request);
+		validateBusinessRules(request);
 
 		Dispatch dispatch = mapToEntity(request);
 

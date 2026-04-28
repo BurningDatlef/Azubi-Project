@@ -5,6 +5,7 @@ import com.example.demo.dto.DispatchRequestDto;
 import com.example.demo.dto.DispatchStatusResponseDto;
 import com.example.demo.service.DispatchService;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/dispatch")
@@ -17,7 +18,7 @@ public class DispatchController {
 	}
 
 	@PostMapping
-	public DispatchCreatedResponseDto tender(@RequestBody DispatchRequestDto request) {
+	public DispatchCreatedResponseDto tender(@Valid @RequestBody DispatchRequestDto request) {
 		String dispatchId = service.tender(request);
 		return new DispatchCreatedResponseDto(dispatchId);
 	}
