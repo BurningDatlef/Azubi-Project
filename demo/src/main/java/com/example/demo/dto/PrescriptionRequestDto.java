@@ -9,35 +9,46 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public record PrescriptionRequestDto(
 
-		@NotBlank(message = "Belegnummer fehlt")
-		@Size(max = 256, message = "Belegnummer darf maximal 256 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 256)
+		@Schema(example = "RX-2024-0001")
 		String documentId,
 
-		@NotNull(message = "Ausstellungsdatum fehlt")
+		@NotNull
+		@Schema(example = "2024-05-01")
 		LocalDate issueDate,
 
-		@NotBlank(message = "Kostenträger-Name fehlt")
-		@Size(max = 256, message = "Kostenträger-Name darf maximal 256 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 256)
+		@Schema(example = "AOK Rheinland")
 		String costUnitName,
 
-		@NotNull(message = "Kostenträger-IK fehlt")
+		@NotNull
+		@Schema(example = "123456789")
 		Integer costUnitIKNumber,
 
-		@NotBlank(message = "Betriebsstättennummer fehlt")
-		@Size(max = 9, message = "Betriebsstättennummer darf maximal 9 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 9)
+		@Schema(example = "987654321")
 		String establishmentId,
 
-		@NotBlank(message = "Vertragsarztnummer fehlt")
-		@Size(max = 9, message = "Vertragsarztnummer darf maximal 9 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 9)
+		@Schema(example = "123456789")
 		String contractMedicalPractitionerID,
 
-		@NotNull(message = "Patient fehlt")
+		@NotNull
 		@Valid
+		@Schema(description = "Patientendaten")
 		PatientRequestDto patient,
 
-		@NotEmpty(message = "Mindestens eine Position muss geliefert werden")
-		List<@Valid PositionRequestDto> positions
+		@NotEmpty
+		@Valid
+		@Schema(description = "Leistungspositionen")
+		List<PositionRequestDto> positions
 ) {
 }

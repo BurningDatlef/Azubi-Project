@@ -8,22 +8,28 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public record PositionRequestDto(
 
-		@NotBlank(message = "Positionsnummer fehlt")
-		@Size(max = 10, message = "Positionsnummer darf maximal 10 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 10)
+		@Schema(example = "P12345")
 		String itemNumber,
 
-		@NotBlank(message = "Positionstext fehlt")
-		@Size(max = 256, message = "Positionstext darf maximal 256 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 256)
+		@Schema(example = "Ibuprofen 600mg")
 		String itemText,
 
-		@NotNull(message = "Einzelpreis fehlt")
-		@DecimalMin(value = "0.00", inclusive = false, message = "Einzelpreis muss größer als 0 sein")
+		@NotNull
+		@DecimalMin(value = "0.00", inclusive = false)
+		@Schema(example = "12.99")
 		BigDecimal singlePrice,
 
-		@NotNull(message = "Menge fehlt")
-		@Positive(message = "Menge muss größer als 0 sein")
+		@NotNull
+		@Positive
+		@Schema(example = "2")
 		Integer amount
 ) {
 }

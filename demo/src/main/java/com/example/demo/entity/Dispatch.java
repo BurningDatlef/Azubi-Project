@@ -1,19 +1,13 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.persistence.*;
-
-//TODO DTO Klassen angucken etc.
-//TODO Endpunkte haben verschiedende rückgaben
 @Entity
 @Getter
 @Setter
@@ -26,7 +20,11 @@ public class Dispatch {
 	private String dispatchId;
 	private Integer customerNumber;
 	private BigDecimal accountSum;
-	private String status;
+
+	@Enumerated(EnumType.STRING)
+	private DispatchStatus status;
+
+	private LocalDateTime submittedAt;
 
 	@OneToMany(mappedBy = "dispatch", cascade = CascadeType.ALL)
 	private List<Prescription> prescription;

@@ -35,7 +35,7 @@ public class Prescription {
 	private Patient patient;
 
 	@OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
-	private List<Position> positionen;
+	private List<Position> positions;
 
 	@ManyToOne
 	@JoinColumn(name = "dispatch_id")

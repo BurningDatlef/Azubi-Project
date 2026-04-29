@@ -6,41 +6,52 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public record PatientRequestDto(
 
-		@NotBlank(message = "Nachname fehlt")
-		@Size(max = 256, message = "Nachname darf maximal 256 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 256)
+		@Schema(description = "Nachname des Patienten", example = "Müller")
 		String lastname,
 
-		@NotBlank(message = "Vorname fehlt")
-		@Size(max = 256, message = "Vorname darf maximal 256 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 256)
+		@Schema(description = "Vorname des Patienten", example = "Max")
 		String firstname,
 
-		@NotNull(message = "Geburtsdatum fehlt")
+		@NotNull
+		@Schema(description = "Geburtsdatum", example = "1985-10-12")
 		LocalDate birthday,
 
-		@NotBlank(message = "Versichertennummer fehlt")
-		@Size(max = 12, message = "Versichertennummer darf maximal 12 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 12)
+		@Schema(description = "Versichertennummer", example = "A12345678901")
 		String insurantNumber,
 
-		@NotBlank(message = "Versichertenstatus fehlt")
-		@Size(max = 5, message = "Versichertenstatus darf maximal 5 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 5)
+		@Schema(description = "Versichertenstatus", example = "GKV")
 		String insurantState,
 
-		@NotBlank(message = "Straße fehlt")
-		@Size(max = 256, message = "Straße darf maximal 256 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 256)
+		@Schema(example = "Musterstraße 1")
 		String street,
 
-		@NotBlank(message = "Postleitzahl fehlt")
-		@Size(max = 10, message = "Postleitzahl darf maximal 10 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 10)
+		@Schema(example = "45127")
 		String postcode,
 
-		@NotBlank(message = "Ort fehlt")
-		@Size(max = 256, message = "Ort darf maximal 256 Zeichen lang sein")
+		@NotBlank
+		@Size(max = 256)
+		@Schema(example = "Essen")
 		String place,
 
-		@NotBlank(message = "Länderkennzeichen fehlt")
-		@Size(min = 3, max = 3, message = "Länderkennzeichen muss genau 3 Zeichen lang sein")
+		@NotBlank
+		@Size(min = 3, max = 3)
+		@Schema(example = "DEU")
 		String countrycode
 ) {
 }
